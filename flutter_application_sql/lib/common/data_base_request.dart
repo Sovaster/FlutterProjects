@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
-
 abstract class DataBaseRequest {
+  static String deleteTable(String table) => 'DROP TABLE $table';
+
   static const String tableRole = "role";
   static const String tableModel = "model";
   static const String tableDostup = "dostup";
@@ -57,15 +57,15 @@ abstract class DataBaseRequest {
 
   /// Запрос для создания таблицы Car
   static const String _createTableCar =
-      'CREATE TABLE "$tableCar" ("id"	INTEGER,"number" TEXT NOT NULL,"year"	TEXT NOT NULL,"id_mark"	INTEGER,FOREIGN KEY("id_mark") REFERENCES "mark"("id") ON DELETE CASCADE,"id_client"	INTEGER,FOREIGN KEY("id_client") REFERENCES "client"("id") ON DELETE CASCADE,PRIMARY KEY("id" AUTOINCREMENT))';
+      'CREATE TABLE "$tableCar" ("id"	INTEGER,"number" TEXT NOT NULL,"year"	TEXT NOT NULL,"id_mark"	INTEGER, "id_client" INTEGER, FOREIGN KEY ("id_client") REFERENCES "client"("id") ON DELETE CASCADE, FOREIGN KEY("id_mark") REFERENCES "mark"("id") ON DELETE CASCADE, PRIMARY KEY("id" AUTOINCREMENT))';
 
   /// Запрос для создания таблицы Pass
   static const String _createTablePass =
-      'CREATE TABLE "$tablePass" ("id"	INTEGER,"id_sotr"	INTEGER,FOREIGN KEY("id_sotr") REFERENCES "sotrudnik"("id") ON DELETE CASCADE,"id_car"	INTEGER,FOREIGN KEY("id_car") REFERENCES "car"("id") ON DELETE CASCADE,PRIMARY KEY("id" AUTOINCREMENT))';
+      'CREATE TABLE "$tablePass" ("id"	INTEGER,"id_car"	INTEGER,"id_sotr"	INTEGER,FOREIGN KEY("id_sotr") REFERENCES "sotrudnik"("id") ON DELETE CASCADE, FOREIGN KEY("id_car") REFERENCES "car"("id") ON DELETE CASCADE,PRIMARY KEY("id" AUTOINCREMENT))';
 
   /// Запрос для создания таблицы PassDostup
   static const String _createTablePassDostup =
-      'CREATE TABLE "$tablePassDostup" ("id"	INTEGER,"id_pass"	INTEGER,FOREIGN KEY("id_pass") REFERENCES "pass"("id") ON DELETE CASCADE,"id_dostup"	INTEGER,FOREIGN KEY("id_dostup") REFERENCES "dostup"("id") ON DELETE CASCADE,PRIMARY KEY("id" AUTOINCREMENT))';
+      'CREATE TABLE "$tablePassDostup" ("id"	INTEGER,"id_dostup"	INTEGER,"id_pass"	INTEGER,FOREIGN KEY("id_pass") REFERENCES "pass"("id") ON DELETE CASCADE,FOREIGN KEY("id_dostup") REFERENCES "dostup"("id") ON DELETE CASCADE,PRIMARY KEY("id" AUTOINCREMENT))';
 
   /// Запрос для создания таблицы Sotrudnik
   static const String _createTableSotrudnik =
