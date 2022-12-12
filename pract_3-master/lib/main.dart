@@ -40,6 +40,21 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return FloatingActionButton(
+            onPressed: () {
+              context.read<ThemeCubit>().changeTheme();
+              context.read<HomeCubit>().themeSwitched(context);
+            },
+            child: Icon(
+                state is LightThemeState
+                    ? Icons.accessibility_new
+                    : Icons.accessible,
+                color: Color.fromARGB(255, 251, 255, 0)),
+          );
+        },
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +98,8 @@ class MyHomePage extends StatelessWidget {
             ),
             BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
-                return Column(
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () {
@@ -135,21 +151,6 @@ class MyHomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      floatingActionButton: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
-          return FloatingActionButton(
-            onPressed: () {
-              context.read<ThemeCubit>().changeTheme();
-              context.read<HomeCubit>().themeSwitched(context);
-            },
-            child: Icon(
-                state is LightThemeState
-                    ? Icons.accessibility_new
-                    : Icons.accessible,
-                color: Color.fromARGB(255, 251, 255, 0)),
-          );
-        },
       ),
     );
   }
