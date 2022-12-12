@@ -47,6 +47,7 @@ class MyHomePage extends StatelessWidget {
               context.read<ThemeCubit>().changeTheme();
               context.read<HomeCubit>().themeSwitched(context);
             },
+            backgroundColor: Color.fromARGB(255, 0, 0, 0),
             child: Icon(
                 state is LightThemeState
                     ? Icons.accessibility_new
@@ -107,11 +108,14 @@ class MyHomePage extends StatelessWidget {
                             .read<HomeCubit>()
                             .PlusClick(context.read<ThemeCubit>().themeMode);
                       },
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 0, 0, 0),
+                      ),
                       child: const Icon(Icons.arrow_upward,
                           color: Color.fromARGB(255, 0, 255, 13)),
                     ),
                     SizedBox(
-                      height: 10,
+                      width: 10,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -119,6 +123,9 @@ class MyHomePage extends StatelessWidget {
                             .read<HomeCubit>()
                             .MinusClick(context.read<ThemeCubit>().themeMode);
                       },
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 0, 0, 0),
+                      ),
                       child: const Icon(Icons.arrow_downward,
                           color: Color.fromARGB(255, 255, 0, 0)),
                     ),
