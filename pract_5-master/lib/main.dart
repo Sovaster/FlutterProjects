@@ -14,17 +14,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
-      builder: ((context, themeMode, child) => MaterialApp(
-            title: 'Shared',
-            theme: Themes.lightTheme,
-            darkTheme: Themes.darkTheme,
-            themeMode: themeMode,
-            initialRoute: 'first',
-            routes: {
-              'first': (context) => FirstPage(_notifier),
-              'second': (context) => SecondPage(),
-            },
-          )),
+      builder: ((context, themeMode, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Shared',
+          theme: Themes.lightTheme,
+          darkTheme: Themes.darkTheme,
+          themeMode: themeMode,
+          initialRoute: 'first',
+          routes: {
+            'first': (context) => FirstPage(_notifier),
+            'second': (context) => SecondPage(),
+          },
+        );
+      }),
       valueListenable: _notifier,
     );
   }
