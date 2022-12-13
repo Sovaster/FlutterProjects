@@ -55,26 +55,26 @@ class _FirstPageState extends State<FirstPage> {
 
     loadPrefs();
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          notifier.value = notifier.value == ThemeMode.light
-              ? ThemeMode.dark
-              : ThemeMode.light,
-          currentTheme = notifier.value == ThemeMode.light
-              ? ThemesEnum.light
-              : ThemesEnum.dark,
-        },
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        child: Icon(
-            notifier.value == ThemeMode.light
-                ? Icons.accessibility_new
-                : Icons.accessible,
-            color: Color.fromARGB(255, 251, 255, 0)),
-      ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          FloatingActionButton(
+            onPressed: () => {
+              notifier.value = notifier.value == ThemeMode.light
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
+              currentTheme = notifier.value == ThemeMode.light
+                  ? ThemesEnum.light
+                  : ThemesEnum.dark,
+            },
+            backgroundColor: Color.fromARGB(255, 0, 0, 0),
+            child: Icon(
+                notifier.value == ThemeMode.light
+                    ? Icons.accessibility_new
+                    : Icons.accessible,
+                color: Color.fromARGB(255, 251, 255, 0)),
+          ),
           Padding(
             padding: EdgeInsets.all(15),
             child: SizedBox(

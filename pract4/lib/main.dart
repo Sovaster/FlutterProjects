@@ -40,26 +40,26 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
-          return FloatingActionButton(
-            onPressed: () {
-              context.read<ThemeCubit>().changeTheme();
-              context.read<HomeCubit>().themeSwitched(context);
-            },
-            backgroundColor: Color.fromARGB(255, 0, 0, 0),
-            child: Icon(
-                state is LightThemeState
-                    ? Icons.accessibility_new
-                    : Icons.accessible,
-                color: Color.fromARGB(255, 251, 255, 0)),
-          );
-        },
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            BlocBuilder<ThemeCubit, ThemeState>(
+              builder: (context, state) {
+                return FloatingActionButton(
+                  onPressed: () {
+                    context.read<ThemeCubit>().changeTheme();
+                    context.read<HomeCubit>().themeSwitched(context);
+                  },
+                  backgroundColor: Color.fromARGB(255, 0, 0, 0),
+                  child: Icon(
+                      state is LightThemeState
+                          ? Icons.accessibility_new
+                          : Icons.accessible,
+                      color: Color.fromARGB(255, 251, 255, 0)),
+                );
+              },
+            ),
             BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
                 if (state is ClickState) {

@@ -22,10 +22,6 @@ class HomeCubit extends Cubit<HomeState> {
       clickCount++;
       emit(ClickState(clickCount));
     }
-/*
-    if (clickCount >= 100) {
-      emit(FinishState());
-    }*/
 
     message = "Значение кликера: $clickCount. Тема: ${themeMode.name}";
 
