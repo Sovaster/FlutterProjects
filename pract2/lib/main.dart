@@ -17,6 +17,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: UrlPage.singIn,
       routes: {
         UrlPage.admin: (context) => AdminHome(),
